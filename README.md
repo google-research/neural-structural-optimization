@@ -13,6 +13,10 @@ This is not an official Google project.
 
 ## Installation
 
+### The easiest way
+
+Run the ["Optimization Examples" notebook](https://colab.research.google.com/github/google-research/neural-structural-optimization/blob/master/notebooks/optimization-examples.ipynb) in Colab, from your web browser!
+
 ### The easy way
 
 There appears to be a bug in the initial TensorFlow 2.0 release that means the
@@ -38,13 +42,14 @@ execute the example notebook.
 
 ### The hard way
 
-Install dependencies manually or with your favorite package manager.
+Install Python dependencies manually or with your favorite package manager.
 
 Required dependencies for running anything at all:
 
-- Python 3.7
+- Python 3.6
 - Abseil Python
 - Autograd
+- dataclasses (if using Python <3.7)
 - NumPy
 - SciPy
 - Scikit-Image
@@ -65,7 +70,7 @@ Optional dependencies:
 
 ## Usage
 
-For examples of typical usage, see the ["Optimization Examples" notebook](https://github.com/google-research/neural-structural-optimization/blob/master/notebooks/optimization-examples.ipynb).
+For examples of typical usage, see the ["Optimization Examples" notebook](https://colab.research.google.com/github/google-research/neural-structural-optimization/blob/master/notebooks/optimization-examples.ipynb).
 
 To reproduce the full results in the paper, run `neural_structural_optimization/pipeline.py` after modifying it to launch jobs on your [Apache Beam](https://beam.apache.org) runner of choice (by default the code uses multi-processing). Note that the total runtime is about 27k CPU hours, but that includes 100 random seed replicates.
 

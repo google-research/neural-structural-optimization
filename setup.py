@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+import sys
 import setuptools
 
 
@@ -21,11 +22,15 @@ INSTALL_REQUIRES = [
     'nlopt',
     'numpy',
     'matplotlib',
+    'Pillow',
     'scipy',
     'scikit-image',
     'seaborn',
     'xarray',
 ]
+
+if sys.version_info[:2] < (3, 7):
+  INSTALL_REQUIRES.append('dataclasses')
 
 
 setuptools.setup(
@@ -37,4 +42,4 @@ setuptools.setup(
     install_requires=INSTALL_REQUIRES,
     url='https://github.com/google-research/neural-structural-optimization',
     packages=setuptools.find_packages(),
-    python_requires='>=3.7')
+    python_requires='>=3.6')
