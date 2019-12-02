@@ -66,13 +66,15 @@ Optional dependencies:
 
 - [Scikit-Sparse](https://scikit-sparse.readthedocs.io/en/latest/overview.html): speeds up physics simulation by about 2x
 - [NLopt](https://nlopt.readthedocs.io/): required for the MMA optimizer
-- Seaborn: for the notebook.
+- Seaborn: for the notebooks.
 
 ## Usage
 
 For examples of typical usage, see the ["Optimization Examples" notebook](https://colab.research.google.com/github/google-research/neural-structural-optimization/blob/master/notebooks/optimization-examples.ipynb).
 
 To reproduce the full results in the paper, run `neural_structural_optimization/pipeline.py` after modifying it to launch jobs on your [Apache Beam](https://beam.apache.org) runner of choice (by default the code uses multi-processing). Note that the total runtime is about 27k CPU hours, but that includes 100 random seed replicates.
+
+You don't need to run our pipeline if you are simply interested in comparing to our results or running alternative analyses. You can download the [raw data (188 MB)](https://storage.googleapis.com/neural-structural-optimization-public/all_losses.nc) from Google Cloud Storage. See the ["Analysis of optimization results" notebook](https://colab.research.google.com/github/google-research/neural-structural-optimization/blob/master/notebooks/analyze-results.ipynb) for how we processed this data to create the figures and table in our paper.
 
 ## Bibtex
 
