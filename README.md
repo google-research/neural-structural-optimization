@@ -3,9 +3,13 @@
 [Stephan Hoyer](https://ai.google/research/people/StephanHoyer/),
 [Jascha Sohl-Dickstein](https://ai.google/research/people/JaschaSohldickstein/), [Sam Greydanus](https://greydanus.github.io/about.html)
 
-Paper: https://arxiv.org/abs/1909.04240
+Presented at the NeurIPS 2019 workshop on [Solving inverse problems with deep networks](https://deep-inverse.org), December 13th, 2019.
 
-To be presented at the NeurIPS 2019 workshop on [Solving inverse problems with deep networks](https://deep-inverse.org), December 13th, 2019.
+Key links:
+
+- [Paper](https://arxiv.org/abs/1909.04240)
+- [Blog post](https://greydanus.github.io/2019/12/15/neural-reparam/)
+- [Recorded presentation](https://slideslive.com/38922373/neural-reparameterization-improves-structural-optimization)
 
 This is not an official Google project.
 
