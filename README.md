@@ -11,8 +11,6 @@ Key links:
 - [Blog post](https://greydanus.github.io/2019/12/15/neural-reparam/)
 - [Recorded presentation](https://slideslive.com/38922373/neural-reparameterization-improves-structural-optimization)
 
-This is not an official Google project.
-
 ![Optimization example](https://github.com/google-research/neural-structural-optimization/raw/master/notebooks/movie.gif)
 
 ## Installation
