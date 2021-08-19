@@ -27,8 +27,8 @@ import tensorflow as tf
 layers = tf.keras.layers
 
 
-def batched_topo_loss(params, envs):
-  losses = [env.objective(params[i], volume_contraint=True)
+def batched_topo_loss(params, envs, volume_contraint, cone_filter):
+  losses = [env.objective(params[i], volume_contraint, cone_filter)
             for i, env in enumerate(envs)]
   return np.stack(losses)
 
@@ -49,26 +49,28 @@ def set_random_seed(seed):
 
 class Model(tf.keras.Model):
 
-  def __init__(self, seed=None, args=None):
+  def __init__(self, seed=None, args=None, volume_contraint=True, cone_filter=True):
     super().__init__()
     set_random_seed(seed)
     self.seed = seed
     self.env = topo_api.Environment(args)
+    self.volume_contraint = volume_contraint
+    self.cone_filter = cone_filter
 
   def loss(self, logits):
     # for our neural network, we use float32, but we use float64 for the physics
     # to avoid any chance of overflow.
     # add 0.0 to work-around bug in grad of tf.cast on NumPy arrays
     logits = 0.0 + tf.cast(logits, tf.float64)
-    f = lambda x: batched_topo_loss(x, [self.env])
+    f = lambda x: batched_topo_loss(x, [self.env], self.volume_contraint, self.cone_filter)
     losses = convert_autograd_to_tensorflow(f)(logits)
     return tf.reduce_mean(losses)
 
 
 class PixelModel(Model):
 
-  def __init__(self, seed=None, args=None):
-    super().__init__(seed, args)
+  def __init__(self, seed=None, args=None, volume_contraint=True, cone_filter=True):
+    super().__init__(seed, args, volume_contraint, cone_filter)
     shape = (1, self.env.args['nely'], self.env.args['nelx'])
     z_init = np.broadcast_to(args['volfrac'] * args['mask'], shape)
     self.z = tf.Variable(z_init, trainable=True)
@@ -124,8 +126,10 @@ class CNNModel(Model):
       activation=tf.nn.tanh,
       conv_initializer=tf.initializers.VarianceScaling,
       normalization=global_normalization,
+      volume_contraint = True,
+      cone_filter = True
   ):
-    super().__init__(seed, args)
+    super().__init__(seed, args, volume_contraint, cone_filter)
 
     if len(resizes) != len(conv_filters):
       raise ValueError('resizes and filters must be same size')
