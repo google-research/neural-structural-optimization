@@ -63,10 +63,11 @@ class Environment:
         self.reshape(params), self.args, volume_contraint=volume_contraint,
     )
 
-  def objective(self, params, volume_contraint=False):
+  def objective(self, params, volume_contraint=False, cone_filter=True):
     return topo_physics.objective(
         self.reshape(params), self.ke, self.args,
         volume_contraint=volume_contraint,
+        cone_filter=cone_filter
     )
 
   def constraint(self, params):
